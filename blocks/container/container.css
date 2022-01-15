@@ -2,9 +2,16 @@
   padding: 0 19px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 450px) {
   .container {
-    padding: 0 100px;
+    padding: 0 50px;
+  }
+}
+
+
+@media screen and (min-width: 550px) {
+  .container {
+    padding: 0 90px;
   }
 }
 
