@@ -1,0 +1,13 @@
+.popup__saved-btn {
+  width: 100%;
+  min-height: 46px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  transition: .2s ease-in;
+}
+
+.popup__saved-btn:hover,
+.popup__saved-btn:focus {
+  opacity: .8;
+}

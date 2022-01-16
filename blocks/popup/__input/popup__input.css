@@ -1,0 +1,16 @@
+.popup__input {
+  width: 100%;
+  padding: 0 0 10px 0;
+  border: none;
+  outline: none;
+}
+
+.popup__input::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, .9);
+}

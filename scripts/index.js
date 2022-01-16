@@ -46,7 +46,7 @@ popupClosedButton.addEventListener('click', closePopup);
 
 popupForm.addEventListener('submit', formSubmitHandler);
 
-popup.addEventListener('click', function (event) {
+popup.addEventListener('mousedown', function (event) {
   if (event.target === event.currentTarget) {
     closePopup()
   }
