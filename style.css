@@ -173,8 +173,6 @@
   opacity: .6;
 }
 
-.cards {}
-
 .cards__list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
@@ -230,6 +228,7 @@
   background: transparent url('./images/icon_heart.svg') no-repeat;
   background-size: cover;
   padding: 0;
+  cursor: pointer;
   transition: .2s ease-in;
 }
 
@@ -237,9 +236,21 @@
   opacity: .5;
 }
 
-.popup {
-  display: none;
+.card__like-btn_active {
+  background-image: url('./images/icon_heart_active.svg');
+}
 
+.popup {
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: .2s ease-in;
+}
+
+.popup_opened {
+  visibility: visible;
+  opacity: 1;
+  transition: .5s ease-in;
 }
 
 .popup-edit-profile {
@@ -248,14 +259,9 @@
   justify-content: center;
   top: 0;
   right: 0;
-  bottom: 0;
-  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, .5);
-
-}
-
-.popup_opened {
-  display: flex;
 }
 
 .popup__container {
