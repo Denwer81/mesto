@@ -30,8 +30,8 @@ function formSubmitHandler (evt) {
   closePopup();
 };
 
-profileEditButton.addEventListener('click', function () {
-  openPopup();
+function openProfilePoup() {
+  openPopup()
   profileFormInfo.forEach(function (elem) {
     if (elem.name === 'name') {
       elem.value = profileUserName.textContent;
@@ -40,26 +40,11 @@ profileEditButton.addEventListener('click', function () {
       elem.value = profileText.textContent;
     }
   })
-});
+};
+
+
+profileEditButton.addEventListener('click', openProfilePoup);
 
 popupClosedButton.addEventListener('click', closePopup);
 
 popupForm.addEventListener('submit', formSubmitHandler);
-
-popup.addEventListener('mousedown', function (event) {
-  if (event.target === event.currentTarget) {
-    closePopup()
-  }
-});
-
-window.onkeydown = function(event) {
-  if (event.keyCode === 27) {
-    closePopup()
-  }
-};
-
-cardLikeButton.forEach(function (elem) {
-  elem.addEventListener('click', function (evt) {
-    evt.target.classList.toggle('card__like-btn_active')
-  })
-});

@@ -6,3 +6,7 @@
 .popup__element:not(:last-child) {
   margin-bottom: 30px;
 }
+
+.popup__element:nth-child(2) {
+  margin-bottom: 42px;
+}

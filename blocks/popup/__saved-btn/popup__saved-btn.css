@@ -5,9 +5,16 @@
   color: #fff;
   border: none;
   transition: .2s ease-in;
+  cursor: pointer;
 }
 
 .popup__saved-btn:hover,
 .popup__saved-btn:focus {
   opacity: .8;
+}
+
+@media screen and (min-width: 768px) {
+  .popup__saved-btn {
+    font-size: 18px;
+  }
 }
