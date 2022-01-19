@@ -1,12 +1,15 @@
-const profileEditButton = document.querySelector('.profile__edit-btn');
-let profileUserName = document.querySelector('.profile__user-name');
-let profileText = document.querySelector('.profile__text');
+// Popup
 const popup = document.querySelector('.popup');
+// кнопки popup
 const popupClosedButton = popup.querySelector('.popup__closed-btn');
 const popupSavedButton = popup.querySelector('.popup__saved-btn');
-const popupForm = popup.querySelector('.popup__form');
-const profileFormInfo = popup.querySelectorAll('.popup__input');
-let cardLikeButton = document.querySelectorAll('.card__like-btn');
+// секция profile
+const profileEditButton = document.querySelector('.profile__edit-btn');
+const profileUserName = document.querySelector('.profile__user-name');
+const profileText = document.querySelector('.profile__text');
+const profilePopupForm = popup.querySelector('.popup__form');
+const profileFormName = popup.querySelector('.popup__input_data_name');
+const profileFormJob = popup.querySelector('.popup__input_data_job');
 
 
 function openPopup() {
@@ -17,34 +20,25 @@ function closePopup() {
   popup.classList.remove('popup_opened')
 };
 
-function formSubmitHandler (evt) {
+function fillProfileData() {
+  profileUserName.textContent = profileFormName.value;
+  profileText.textContent = profileFormJob.value;
+};
+
+function fillFormData() {
+  profileFormName.value = profileUserName.textContent;
+  profileFormJob.value = profileText.textContent;
+}
+
+profileEditButton.addEventListener('click', () => {
+  fillFormData();
+  openPopup();
+});
+
+profilePopupForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  profileFormInfo.forEach(function (elem) {
-    if (elem.name === 'name') {
-      profileUserName.textContent = elem.value;
-    }
-    if (elem.name === 'job') {
-      profileText.textContent = elem.value;
-    }
-  })
+  fillProfileData();
   closePopup();
-};
-
-function openProfilePoup() {
-  openPopup()
-  profileFormInfo.forEach(function (elem) {
-    if (elem.name === 'name') {
-      elem.value = profileUserName.textContent;
-    }
-    if (elem.name === 'job') {
-      elem.value = profileText.textContent;
-    }
-  })
-};
-
-
-profileEditButton.addEventListener('click', openProfilePoup);
+});
 
 popupClosedButton.addEventListener('click', closePopup);
-
-popupForm.addEventListener('submit', formSubmitHandler);
