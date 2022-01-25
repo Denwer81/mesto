@@ -3,6 +3,7 @@
 
 @import url(../blocks/page/page.css);
 @import url(../blocks/page/__container/page__container.css);
+
 @import url(../blocks/container/container.css);
 @import url(../blocks/main/__profile/main__profile.css);
 
@@ -25,6 +26,7 @@
 @import url(../blocks/card/__info/card__info.css);
 @import url(../blocks/card/__like-btn/card__like-btn.css);
 @import url(../blocks/card/__title/card__title.css);
+@import url(../blocks/card/__delete-btn/card__delete-btn.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__closed-btn/popup__closed-btn.css);
@@ -35,84 +37,9 @@
 @import url(../blocks/popup/__saved-btn/popup__saved-btn.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__figure/popup__figure.css);
+@import url(../blocks/popup/__image-text/popup__image-text.css);
+@import url(../blocks/popup/__image/popup__image.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
-
-.card__delete-btn {
-  width: 15.5px;
-  height: 13.5px;
-  position: absolute;
-  top: 26px;
-  right: 21px;
-  z-index: 5;
-  border: none;
-  padding: 0;
-  background-color: transparent;
-  background-image: url('../images/icon_delete.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  transition: .2s ease-in;
-  cursor: pointer;
-}
-
-.card__delete-btn:hover {
-  opacity: .6;
-}
-
-/* .popup__container_type_image {
-  width: 75vw;
-  height: 75vh;
-  border-radius: 0;
-  padding: 0;
-  background-color: transparent;
-  color: #fff;
-}
-
-.popup__image {
-  display: block;
-  width: 75vw;
-  height: 75vh;
-  object-fit: cover;
-}
-
-.popup__figure {
-  padding: 0;
-  margin: 0;
-}
-
-.popup__image-text {
-  color: #fff;
-  font-size: 12px;
-  margin-top: 10px;
-} */
-
-.popup__container_type_image {
-  width: 75vw;
-  /* height: 75vh; */
-  border-radius: 0;
-  padding: 0;
-  background-color: transparent;
-  color: #fff;
-}
-
-.popup__image {
-  display: block;
-  width: 100%;
-  max-height: 75vh;
-  /* width: 75vw;
-  height: 75vh; */
-  object-fit: cover;
-}
-
-.popup__figure {
-  padding: 0;
-  margin: 0;
-}
-
-.popup__image-text {
-  color: #fff;
-  font-size: 12px;
-  margin-top: 10px;
-}
