@@ -8,27 +8,27 @@ const cardsList = document.querySelector('.cards__list');
 const initialCards = [
     {
     name: 'Национальный парк Секвойя',
-    link: '../images/sequoia_park.jpg'
+    link: './images/sequoia_park.jpg'
   },
   {
     name: 'Озеро сукко',
-    link: '../images/sukko_lake.jpg'
+    link: './images/sukko_lake.jpg'
   },
   {
     name: 'Парк Йосемити',
-    link: '../images/yosemite_park.jpg'
+    link: './images/yosemite_park.jpg'
   },
   {
     name: 'Big Sur',
-    link: '../images/big_sur.jpg'
+    link: './images/big_sur.jpg'
   },
   {
     name: 'Дубай',
-    link: '../images/dubai.jpg'
+    link: './images/dubai.jpg'
   },
   {
     name: 'Будапешт',
-    link: '../images/Budapest.jpg'
+    link: './images/Budapest.jpg'
   },
 ];
 
