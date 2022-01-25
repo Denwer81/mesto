@@ -32,20 +32,13 @@ const initialCards = [
   },
 ];
 
-
-// Инициализация карточек
-initialCards.forEach((elem) => AddCards(elem));
-
-
 // Popup
-const popup = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddCard = document.querySelector('.popup_type_add-card');
 const popupImage = document.querySelector('.popup_type_image');
 
 // кнопки popup
-const popupClosedButton = document.querySelectorAll('.popup__closed-btn');
-const popupSavedButton = document.querySelectorAll('.popup__saved-btn');
+const popupClosedButtons = document.querySelectorAll('.popup__closed-btn');
 
 // кнопки открытия
 const profileEditButton = document.querySelector('.profile__edit-btn');
@@ -70,41 +63,48 @@ const popupCardImage = popupImage.querySelector('.popup__image');
 const popupImageText = popupImage.querySelector('.popup__image-text');
 
 
-function AddCards(elem) {
+function addCard(elem) {
+  const card = createCard(elem)
+  bindCardHandler(card);
+  cardsList.prepend(card);
+}
+
+function createCard(elem) {
   const card = cardTemplate.cloneNode(true);
   const cardTemplateTitle = card.querySelector('.card__title');
   const cardTemplateImage = card.querySelector('.card__image');
   cardTemplateTitle.textContent = elem.name;
   cardTemplateImage.src = elem.link;
   cardTemplateImage.alt = `Фото ${elem.name}`;
-  
-  cardsList.prepend(card);
+  return card;
+}
 
+function bindCardHandler(card) {
   // лайки карточек
-  const cardLikeButton = document.querySelector('.card__like-btn');
+  const cardLikeButton = card.querySelector('.card__like-btn');
   cardLikeButton.addEventListener('click', cardLikesHandler);
 
   // popup картинок в карточке
-  const cardImage = document.querySelector('.card__image');
+  const cardImage = card.querySelector('.card__image');
   cardImage.addEventListener('click', openImageHandler);
 
   // удаление карточки
-  const cardDeleteButton = document.querySelector('.card__delete-btn');
+  const cardDeleteButton = card.querySelector('.card__delete-btn');
   cardDeleteButton.addEventListener('click', deleteHandler);
-};
+}
 
 function addCardHandler(evt) {
   evt.preventDefault();
-  AddCards({
+  addCard({
     name: formAddPlace.value,
     link: formAddLink.value
   });
   togglePopup(popupFormAdd);
-};
+}
 
 function cardLikesHandler(evt) {
   evt.target.classList.toggle('card__like-btn_active')
-};
+}
 
 function openImageHandler(evt) {
   popupCardImage.src = '';
@@ -112,37 +112,40 @@ function openImageHandler(evt) {
   popupCardImage.alt = evt.target.alt;
   popupImageText.textContent = evt.target.alt.slice(4);
   togglePopup(popupImage);
-};
+}
 
 function deleteHandler(evt) {
   evt.target.closest('.card').remove()
-};
+}
 
 function togglePopup(elem) {
   const currentPopup = elem.closest('.popup');
   currentPopup.classList.toggle('popup_opened');
-};
+}
 
 function fillProfileData() {
   profileUserName.textContent = profileFormName.value;
   profileText.textContent = profileFormJob.value;
-};
+}
 
-function fillFormData() {
+function fillFormEditProfile() {
   profileFormName.value = profileUserName.textContent;
   profileFormJob.value = profileText.textContent;
-};
+}
 
 function openProfileHandler() {
-  fillFormData();
+  fillFormEditProfile();
   togglePopup(popupEditProfile);
-};
+}
 
 function popupEditSubmit(evt) {
   evt.preventDefault();
   fillProfileData();
   togglePopup(popupFormEdit);
-};
+}
+
+// Инициализация карточек
+initialCards.forEach((elem) => addCard(elem));
 
 // открытие профайла
 profileEditButton.addEventListener('click', openProfileHandler);
@@ -156,6 +159,7 @@ profileAddCardButton.addEventListener('click', () => togglePopup(popupAddCard));
 // отпраление формы добавления карточки
 popupFormAdd.addEventListener('submit', addCardHandler);
 
-// закрытие всех popup
-popupClosedButton.forEach((elem) => elem.addEventListener('click', () => togglePopup(elem)));
-  
+// открытие и закрытие всех popup
+popupClosedButtons.forEach((elem) => {
+  elem.addEventListener('click', () => togglePopup(elem))
+});
