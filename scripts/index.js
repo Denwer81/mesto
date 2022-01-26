@@ -65,7 +65,6 @@ const popupImageText = popupImage.querySelector('.popup__image-text');
 
 function addCard(elem) {
   const card = createCard(elem)
-  bindCardHandler(card);
   cardsList.prepend(card);
 }
 
@@ -76,21 +75,23 @@ function createCard(elem) {
   cardTemplateTitle.textContent = elem.name;
   cardTemplateImage.src = elem.link;
   cardTemplateImage.alt = `Фото ${elem.name}`;
+
+  bindCardHandlers(card);
   return card;
 }
 
-function bindCardHandler(card) {
+function bindCardHandlers(card) {
   // лайки карточек
   const cardLikeButton = card.querySelector('.card__like-btn');
-  cardLikeButton.addEventListener('click', cardLikesHandler);
+  cardLikeButton.addEventListener('click', handleCardLike);
 
   // popup картинок в карточке
   const cardImage = card.querySelector('.card__image');
-  cardImage.addEventListener('click', openImageHandler);
+  cardImage.addEventListener('click', handleOpenImageModal);
 
   // удаление карточки
   const cardDeleteButton = card.querySelector('.card__delete-btn');
-  cardDeleteButton.addEventListener('click', deleteHandler);
+  cardDeleteButton.addEventListener('click', handleDelete);
 }
 
 function addCardHandler(evt) {
@@ -102,11 +103,11 @@ function addCardHandler(evt) {
   togglePopup(popupFormAdd);
 }
 
-function cardLikesHandler(evt) {
+function handleCardLike(evt) {
   evt.target.classList.toggle('card__like-btn_active')
 }
 
-function openImageHandler(evt) {
+function handleOpenImageModal(evt) {
   popupCardImage.src = '';
   popupCardImage.src = evt.target.src;
   popupCardImage.alt = evt.target.alt;
@@ -114,7 +115,7 @@ function openImageHandler(evt) {
   togglePopup(popupImage);
 }
 
-function deleteHandler(evt) {
+function handleDelete(evt) {
   evt.target.closest('.card').remove()
 }
 
@@ -138,7 +139,7 @@ function openProfileHandler() {
   togglePopup(popupEditProfile);
 }
 
-function popupEditSubmit(evt) {
+function submitFormProfile(evt) {
   evt.preventDefault();
   fillProfileData();
   togglePopup(popupFormEdit);
@@ -151,7 +152,7 @@ initialCards.forEach((elem) => addCard(elem));
 profileEditButton.addEventListener('click', openProfileHandler);
 
 // отпраление формы профайла
-popupFormEdit.addEventListener('submit', popupEditSubmit);
+popupFormEdit.addEventListener('submit', submitFormProfile);
 
 // открытие формы добавления карточки
 profileAddCardButton.addEventListener('click', () => togglePopup(popupAddCard));
@@ -159,7 +160,7 @@ profileAddCardButton.addEventListener('click', () => togglePopup(popupAddCard));
 // отпраление формы добавления карточки
 popupFormAdd.addEventListener('submit', addCardHandler);
 
-// открытие и закрытие всех popup
+// закрытие всех popup
 popupClosedButtons.forEach((elem) => {
   elem.addEventListener('click', () => togglePopup(elem))
 });

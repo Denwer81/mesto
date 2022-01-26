@@ -50,12 +50,8 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form popup__form_type_edit-profile" name="edit-profile-form">
-          <label class="popup__element">
-            <input class="popup__input popup__input_data_name" type="text" name="name" placeholder="Имя" required>
-          </label>
-          <label class="popup__element">
-            <input class="popup__input popup__input_data_job" type="text" name="job" placeholder="Профессия" required>
-          </label>
+          <input class="popup__input popup__input_data_name" type="text" name="name" placeholder="Имя" required>
+          <input class="popup__input popup__input_data_job" type="text" name="job" placeholder="Профессия" required>
           <button class="popup__saved-btn" type="submit">Сохранить</button>
         </form>
         <button class="popup__closed-btn" type="button"></button>
@@ -66,14 +62,10 @@
       <div class="popup__container">
         <h2 class="popup__title">Новое Место</h2>
         <form class="popup__form popup__form_type_add-card" name="add-card-form">
-          <label class="popup__element">
-            <input class="popup__input popup__input_data_place" type="text" name="data-image" placeholder="Название"
-              required>
-          </label>
-          <label class="popup__element">
-            <input class="popup__input popup__input_data_link" type="url" name="data-image-url"
-              placeholder="Ссылка на картинку" required>
-          </label>
+          <input class="popup__input popup__input_data_place" type="text" name="data-image" placeholder="Название"
+            required>
+          <input class="popup__input popup__input_data_link" type="url" name="data-image-url"
+            placeholder="Ссылка на картинку" required>
           <button class="popup__saved-btn" type="submit">Сохранить</button>
         </form>
         <button class="popup__closed-btn" type="button"></button>
@@ -81,11 +73,11 @@
     </div>
 
     <div class="popup popup_type_image">
-        <figure class="popup__figure">
-            <img class="popup__image" src="#" alt="#">
-          <figcaption class="popup__image-text"></figcaption>
-          <button class="popup__closed-btn" type="button"></button>
-        </figure>
+      <figure class="popup__figure">
+        <img class="popup__image" src="#" alt="#">
+        <figcaption class="popup__image-text"></figcaption>
+        <button class="popup__closed-btn" type="button"></button>
+      </figure>
     </div>
 
   </div>
