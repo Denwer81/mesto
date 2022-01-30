@@ -33,6 +33,7 @@ const initialCards = [
 ];
 
 // Popup
+const popupList = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddCard = document.querySelector('.popup_type_add-card');
 const popupImage = document.querySelector('.popup_type_image');
@@ -64,7 +65,7 @@ const popupImageText = popupImage.querySelector('.popup__image-text');
 
 
 function addCard(elem) {
-  const card = createCard(elem)
+  const card = createCard(elem);
   cardsList.prepend(card);
 }
 
@@ -116,7 +117,7 @@ function handleOpenImageModal(evt) {
 }
 
 function handleDelete(evt) {
-  evt.target.closest('.card').remove()
+  evt.target.closest('.card').remove();
 }
 
 function togglePopup(elem) {
@@ -145,6 +146,25 @@ function submitFormProfile(evt) {
   togglePopup(popupFormEdit);
 }
 
+function openAddCardHandler() {
+  popupFormAdd.reset();
+  togglePopup(popupAddCard);
+}
+
+function closePopupEsc(evt) {
+  currentPopup = document.querySelectorAll('.popup_opened');
+  if (!!currentPopup.length && evt.key === 'Escape') {
+    togglePopup(currentPopup[0]);
+  }
+}
+
+function closePopupOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    togglePopup(evt.target);
+  }
+}
+
+
 // Инициализация карточек
 initialCards.forEach((elem) => addCard(elem));
 
@@ -155,12 +175,20 @@ profileEditButton.addEventListener('click', openProfileHandler);
 popupFormEdit.addEventListener('submit', submitFormProfile);
 
 // открытие формы добавления карточки
-profileAddCardButton.addEventListener('click', () => togglePopup(popupAddCard));
+profileAddCardButton.addEventListener('click', openAddCardHandler);
 
 // отпраление формы добавления карточки
 popupFormAdd.addEventListener('submit', addCardHandler);
 
 // закрытие всех popup
-popupClosedButtons.forEach((elem) => {
-  elem.addEventListener('click', () => togglePopup(elem))
-});
+popupClosedButtons.forEach((elem) => elem.addEventListener('click', () => {
+  togglePopup(elem)
+}));
+
+// закрытие popup по Esc
+window.addEventListener('keydown', (evt) => closePopupEsc(evt));
+
+// закрытие popup по ovelay
+popupList.forEach((elem) => elem.addEventListener('mousedown', (evt) => {
+  closePopupOverlay(evt)
+}));
