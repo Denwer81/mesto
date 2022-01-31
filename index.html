@@ -50,8 +50,12 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form popup__form_type_edit-profile" name="edit-profile-form">
-          <input class="popup__input popup__input_data_name" type="text" name="name" placeholder="Имя" required>
-          <input class="popup__input popup__input_data_job" type="text" name="job" placeholder="Профессия" required>
+          <input class="popup__input popup__input_data_name" type="text" name="name"
+            placeholder="Имя" required>
+          <span class="popup__error-container popup__error-container_hidden">text</span>
+          <input class="popup__input popup__input_data_job" type="text" name="job"
+            placeholder="Профессия" required>
+          <span class="popup__error-container popup__error-container_hidden">text</span>
           <button class="popup__saved-btn" type="submit">Сохранить</button>
         </form>
         <button class="popup__closed-btn" type="button"></button>
@@ -62,10 +66,12 @@
       <div class="popup__container">
         <h2 class="popup__title">Новое Место</h2>
         <form class="popup__form popup__form_type_add-card" name="add-card-form">
-          <input class="popup__input popup__input_data_place" type="text" name="data-image" placeholder="Название"
-            required>
+          <input class="popup__input popup__input_data_place" type="text" name="data-image"
+            placeholder="Название" required>
+          <span class="popup__error-container popup__error-container_hidden">text</span>
           <input class="popup__input popup__input_data_link" type="url" name="data-image-url"
             placeholder="Ссылка на картинку" required>
+          <span class="popup__error-container popup__error-container_hidden">text</span>
           <button class="popup__saved-btn" type="submit">Создать</button>
         </form>
         <button class="popup__closed-btn" type="button"></button>
@@ -92,6 +98,8 @@
       </div>
     </li>
   </template>
+  <script src="./scripts/initial-cards.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
