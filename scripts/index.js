@@ -76,12 +76,12 @@ function createCard(elem) {
   cardTemplateTitle.textContent = elem.name;
   cardTemplateImage.src = elem.link;
   cardTemplateImage.alt = `Фото ${elem.name}`;
-  bindCardHandlers(card);
+  handleBindCard(card);
 
   return card;
 }
 
-function bindCardHandlers(card) {
+function handleBindCard(card) {
   // лайки карточек
   const cardLikeButton = card.querySelector('.card__like-btn');
   cardLikeButton.addEventListener('click', handleCardLike);
@@ -111,20 +111,16 @@ function handleDelete(evt) {
   evt.target.closest('.card').remove();
 }
 
-function addCardHandler() {
+function handleAddCard() {
   addCard({
     name: formAddPlace.value,
     link: formAddLink.value
   });
   closePopup(popupFormAdd);
-}
-
-function openAddCardHandler() {
   popupFormAdd.reset();
-  openPopup(popupAddCard);
 }
 
-function openProfileHandler() {
+function openProfilePopup() {
   fillFormEditProfile();
   openPopup(popupEditProfile);
 }
@@ -149,16 +145,18 @@ function submitFormProfile() {
 initialCards.forEach((elem) => addCard(elem));
 
 // открытие профайла
-profileEditButton.addEventListener('click', openProfileHandler);
+profileEditButton.addEventListener('click', openProfilePopup);
 
 // отпраление формы профайла
 popupFormEdit.addEventListener('submit', submitFormProfile);
 
 // открытие формы добавления карточки
-profileAddCardButton.addEventListener('click', openAddCardHandler);
+profileAddCardButton.addEventListener('click', () => {
+  openPopup(popupAddCard);
+});
 
 // отпраление формы добавления карточки
-popupFormAdd.addEventListener('submit', addCardHandler);
+popupFormAdd.addEventListener('submit', handleAddCard);
 
 // закрытие всех popup
 popupClosedButtons.forEach((elem) => { 

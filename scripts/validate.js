@@ -4,14 +4,16 @@ enableValidation({
   submitButtonSelector: '.popup__saved-btn',
   inactiveButtonClass: 'popup__saved-btn_disabled',
   inputErrorClass: 'popup__input_type_error',
-  ErrorClass: 'popup__error_hidden'
+  errorClass: 'popup__error_hidden'
 });
 
 function enableValidation({ formSelector, inputSelector, ...rest }) {
   const forms = document.querySelectorAll(formSelector);
   
   forms.forEach((form) => {
-    form.addEventListener('submit', submitForm);
+    form.addEventListener('submit', (evt) => {
+      submitForm(evt, form, rest)
+    });
     
     const inputs = form.querySelectorAll(inputSelector);
     
@@ -20,12 +22,16 @@ function enableValidation({ formSelector, inputSelector, ...rest }) {
         validationInput(form, input, rest)
       });
     });
-    disabledSubmitButton(form, rest);
+    toggleButtonState(form, rest);
   });
 }
 
-function submitForm(evt) {
+function submitForm(evt, form, { submitButtonSelector, inactiveButtonClass }) {
   evt.preventDefault();
+
+  const submitButton = form.querySelector(submitButtonSelector);
+
+  disableButton(submitButton, inactiveButtonClass);
 }
 
 function validationInput(form, input, rest) {
@@ -37,29 +43,37 @@ function validationInput(form, input, rest) {
     hideError(input, errorMessage, rest);
   };
 
-  disabledSubmitButton(form, rest);
+  toggleButtonState(form, rest);
 }
 
-function showError(input, errorMessage, { inputErrorClass, ErrorClass }) {
+function showError(input, errorMessage, { inputErrorClass, errorClass }) {
   input.classList.add(inputErrorClass);
   errorMessage.textContent = input.validationMessage;
-  errorMessage.classList.remove(ErrorClass);
+  errorMessage.classList.remove(errorClass);
 }
 
-function hideError(input, errorMessage, { inputErrorClass, ErrorClass }) {
+function hideError(input, errorMessage, { inputErrorClass, errorClass }) {
   input.classList.remove(inputErrorClass);
   errorMessage.textContent = '';
-  errorMessage.classList.add(ErrorClass);
+  errorMessage.classList.add(errorClass);
 }
 
-function disabledSubmitButton(form, { submitButtonSelector, inactiveButtonClass }) {
+function toggleButtonState(form, { submitButtonSelector, inactiveButtonClass }) {
   const submitButton = form.querySelector(submitButtonSelector);
   
   if (!form.checkValidity()) {
-    submitButton.classList.add(inactiveButtonClass);
-    submitButton.setAttribute('disabled', true);
+    disableButton(submitButton, inactiveButtonClass);
   } else {
-    submitButton.classList.remove(inactiveButtonClass);
-    submitButton.removeAttribute('disabled');
+    enableButton(submitButton, inactiveButtonClass);
   };
+}
+
+function enableButton (submitButton, inactiveButtonClass) {
+  submitButton.classList.remove(inactiveButtonClass);
+  submitButton.removeAttribute('disabled');
+}
+
+function disableButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.add(inactiveButtonClass);
+  submitButton.setAttribute('disabled', true);
 }
