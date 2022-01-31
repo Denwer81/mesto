@@ -1,4 +1,4 @@
-.popup__error-container {
+.popup__error {
   min-height: 25px;
   font-size: 12px;
   line-height: 12px;
@@ -7,12 +7,12 @@
   transition: opacity .1s ease-in;
 }
 
-.popup__error-container:last-of-type {
+.popup__error:last-of-type {
   margin-bottom: 15px;
 }
 
 @media screen and (min-width: 768px) {
-  .popup__error-container:last-of-type {
+  .popup__error:last-of-type {
     margin-bottom: 15px;
   }
 }

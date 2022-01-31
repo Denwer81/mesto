@@ -111,8 +111,7 @@ function handleDelete(evt) {
   evt.target.closest('.card').remove();
 }
 
-function addCardHandler(evt) {
-  evt.preventDefault();
+function addCardHandler() {
   addCard({
     name: formAddPlace.value,
     link: formAddLink.value
@@ -140,8 +139,7 @@ function fillFormEditProfile() {
   profileFormJob.value = profileText.textContent;
 }
 
-function submitFormProfile(evt) {
-  evt.preventDefault();
+function submitFormProfile() {
   fillProfileData();
   closePopup(popupFormEdit);
 }
@@ -166,5 +164,3 @@ popupFormAdd.addEventListener('submit', addCardHandler);
 popupClosedButtons.forEach((elem) => { 
   elem.addEventListener('click', () => closePopup(elem)) 
 });
-
-console.log(document.forms.elements)

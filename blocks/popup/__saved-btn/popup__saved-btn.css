@@ -16,18 +16,6 @@
   opacity: .8;
 }
 
-.popup__saved-btn_disabled {
-  background-color: #fff;
-  color: #000;
-  border: solid 1px #000;
-  opacity: .2;
-  cursor: auto;
-}
-
-.popup__saved-btn_disabled:hover {
-  opacity: .2;
-}
-
 @media screen and (min-width: 768px) {
   .popup__saved-btn {
     min-height: 50px;
