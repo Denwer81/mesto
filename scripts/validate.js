@@ -12,14 +12,14 @@ function enableValidation({ formSelector, inputSelector, ...rest }) {
   
   forms.forEach((form) => {
     form.addEventListener('submit', (evt) => {
-      submitForm(evt, form, rest)
+      submitForm(evt, form, rest);
     });
     
     const inputs = form.querySelectorAll(inputSelector);
     
     inputs.forEach((input) => {
       input.addEventListener('input', () => {
-        validationInput(form, input, rest)
+        validationInput(form, input, rest);
       });
     });
     toggleButtonState(form, rest);
@@ -41,7 +41,7 @@ function validationInput(form, input, rest) {
     showError(input, errorMessage, rest);
   } else {
     hideError(input, errorMessage, rest);
-  };
+  }
 
   toggleButtonState(form, rest);
 }
@@ -65,7 +65,7 @@ function toggleButtonState(form, { submitButtonSelector, inactiveButtonClass }) 
     disableButton(submitButton, inactiveButtonClass);
   } else {
     enableButton(submitButton, inactiveButtonClass);
-  };
+  }
 }
 
 function enableButton (submitButton, inactiveButtonClass) {
