@@ -17,9 +17,7 @@
 
     <header class="header">
       <div class="header__container">
-        <a tabindex="-1">
-          <img class="header__logo" src="./images/logo_main.svg" alt="Логотип">
-        </a>
+        <img class="header__logo" src="./images/logo_main.svg" alt="Логотип">
       </div>
     </header>
 
@@ -29,10 +27,10 @@
         <img class="profile__image" src="./images/profile_image.jpg" alt="аватар">
         <div class="profile__info">
           <h1 class="profile__user-name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-btn" type="button"></button>
+          <button class="profile__edit-btn" type="button" aria-label="редактировать профиль"></button>
           <p class="profile__text">Исследователь океана</p>
         </div>
-        <button class="profile__add-card-btn" type="button"></button>
+        <button class="profile__add-card-btn" type="button" aria-label="меню добавления карточки"></button>
       </section>
 
       <section class="cards container">
@@ -50,15 +48,15 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form popup__form_type_edit-profile" name="edit-profile-form" novalidate>
-          <input id="name-input" class="popup__input popup__input_data_name" type="text" name="name"
-            placeholder="Имя" minlength="2" maxlength="40" required>
+          <input id="name-input" class="popup__input popup__input_data_name" type="text" name="name" placeholder="Имя"
+            minlength="2" maxlength="40" required>
           <span id="name-input-error" class="popup__error popup__error_hidden"></span>
           <input id="job-input" class="popup__input popup__input_data_job" type="text" name="job"
             placeholder="Профессия" minlength="2" maxlength="200" required>
           <span id="job-input-error" class="popup__error popup__error_hidden"></span>
-          <button class="popup__saved-btn" type="submit">Сохранить</button>
+          <button class="popup__saved-btn" type="submit" aria-label="сохранить данные профиля">Сохранить</button>
         </form>
-        <button class="popup__closed-btn" type="button"></button>
+        <button class="popup__closed-btn" type="button" aria-label="закрыть popup"></button>
       </div>
     </div>
 
@@ -72,9 +70,9 @@
           <input id="image-url-input" class="popup__input popup__input_data_link" type="url" name="data-image-url"
             placeholder="Ссылка на картинку" required>
           <span id="image-url-input-error" class="popup__error popup__error_hidden"></span>
-          <button class="popup__saved-btn" type="submit">Создать</button>
+          <button class="popup__saved-btn" type="submit" aria-label="создать карточку">Создать</button>
         </form>
-        <button class="popup__closed-btn" type="button"></button>
+        <button class="popup__closed-btn" type="button" aria-label="закрыть popup"></button>
       </div>
     </div>
 
@@ -82,7 +80,7 @@
       <figure class="popup__figure">
         <img class="popup__image" src="#" alt="#">
         <figcaption class="popup__image-text"></figcaption>
-        <button class="popup__closed-btn" type="button"></button>
+        <button class="popup__closed-btn" type="button" aria-label="закрыть popup"></button>
       </figure>
     </div>
 
@@ -90,11 +88,11 @@
 
   <template class="card-template">
     <li class="card">
-      <button class="card__delete-btn" type="button"></button>
-      <img class="card__image" src="#" alt="#">
+      <button class="card__delete-btn" type="button" aria-label="удалить карточку"></button>
+      <img class="card__image" src="#" alt="#" loading="lazy">
       <div class="card__info">
         <h2 class="card__title"></h2>
-        <button class="card__like-btn" type="button"></button>
+        <button class="card__like-btn" type="button" aria-label="лайк карточки"></button>
       </div>
     </li>
   </template>
