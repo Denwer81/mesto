@@ -8,6 +8,7 @@
   border: none;
   cursor: pointer;
   transition: .2s ease-in;
+  animation: pulse 1s ease-in-out infinite alternate;
 }
 
 .popup__closed-btn:hover {
@@ -47,5 +48,14 @@
     left: calc(50% - 2px);
     width: 4px;
     height: 40px;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(.95);
+  }
+  to {
+    transform: scale(1);
   }
 }

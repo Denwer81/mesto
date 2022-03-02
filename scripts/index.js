@@ -39,6 +39,7 @@ function openPopup(elem) {
   elem.classList.add('popup_opened');
   elem.addEventListener('mousedown', closePopupOverlay);
   window.addEventListener('keydown', closePopupEsc);
+  lockScroll();
 }
 
 function closePopupOverlay(evt) {
@@ -55,11 +56,12 @@ function closePopupEsc(evt) {
 }
 
 function closePopup(elem) {
-  const currentPopup = elem.closest('.popup'); 
+  const currentPopup = elem.closest('.popup');
 
   currentPopup.removeEventListener('mousedown', closePopupOverlay);
   currentPopup.classList.remove('popup_opened');
   window.removeEventListener('keydown', closePopupEsc);
+  unlockScroll();
 }
 
 function addCard(elem, container) {
@@ -140,6 +142,20 @@ function submitFormProfile() {
   closePopup(popupFormEdit);
 }
 
+function lockScroll() {
+  const scrollBarSize = window.innerWidth - document.documentElement.clientWidth;
+
+  document.body.style.overflow = 'hidden';
+  document.body.style.paddingRight = `${scrollBarSize}px`;
+}
+
+function unlockScroll() {
+  setTimeout(() => {
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+  }, 300);
+}
+
 
 // Инициализация карточек
 initialCards.forEach((elem) => addCard(elem, cardsList));
@@ -159,6 +175,6 @@ profileAddCardButton.addEventListener('click', () => {
 popupFormAdd.addEventListener('submit', handleAddCard);
 
 // закрытие всех popup
-popupClosedButtons.forEach((elem) => { 
+popupClosedButtons.forEach((elem) => {
   elem.addEventListener('click', () => closePopup(elem));
 });
