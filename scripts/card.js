@@ -18,9 +18,8 @@ class Card {
 
   _handleBindCard() {
     // лайки карточек
-    this._cardElement.
-      querySelector('.card__like-btn').
-      addEventListener('click', this._handleCardLike);
+    this._buttonLike = this._cardElement.querySelector('.card__like-btn');
+    this._buttonLike.addEventListener('click', this._handleCardLike);
 
     // удаление карточки
     this._cardElement.
@@ -33,12 +32,13 @@ class Card {
       addEventListener('click', this._handleOpenImageModal);
   }
 
-  _handleCardLike(evt) {
-    evt.target.classList.toggle('card__like-btn_active');
+  _handleCardLike() {
+    this._buttonLike.toggle('card__like-btn_active');
   }
 
   _handleDelete(evt) {
-    evt.target.closest('.card').remove();
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 
   _handleOpenImageModal(evt) {
