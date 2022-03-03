@@ -18,16 +18,19 @@ class Card {
 
   _handleBindCard() {
     // лайки карточек
-    const cardLikeButton = this._cardElement.querySelector('.card__like-btn');
-    cardLikeButton.addEventListener('click', this._handleCardLike);
+    this._cardElement.
+      querySelector('.card__like-btn').
+      addEventListener('click', this._handleCardLike);
 
     // удаление карточки
-    const cardDeleteButton = this._cardElement.querySelector('.card__delete-btn');
-    cardDeleteButton.addEventListener('click', this._handleDelete);
+    this._cardElement.
+      querySelector('.card__delete-btn').
+      addEventListener('click', this._handleDelete);
 
     // popup картинок в карточке
-    const cardImage = this._cardElement.querySelector('.card__image');
-    cardImage.addEventListener('click', this._handleOpenImageModal);
+    this._cardElement.
+      querySelector('.card__image').
+      addEventListener('click', this._handleOpenImageModal);
   }
 
   _handleCardLike(evt) {

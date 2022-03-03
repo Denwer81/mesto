@@ -1,37 +1,24 @@
-import { initialCards } from "./initial-cards.js";
-import { Card } from "./card.js";
-import { FormValidator, validatorSetting } from "./card2.js";
-
-// шаблон карточки
-const cardTemplate = '.card-template';
-
-// список карточек
-const cardsList = document.querySelector('.cards__list');
-
-// Popup
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-const popupAddCard = document.querySelector('.popup_type_add-card');
-
-// кнопки popup
-const popupClosedButtons = document.querySelectorAll('.popup__closed-btn');
-
-// кнопки открытия
-const profileEditButton = document.querySelector('.profile__edit-btn');
-const profileAddCardButton = document.querySelector('.profile__add-card-btn');
-
-// Информация о пользователе на странице
-const profileUserName = document.querySelector('.profile__user-name');
-const profileText = document.querySelector('.profile__text');
-
-// Форма заполнения профиля 
-const popupFormEdit = document.querySelector('.popup__form_type_edit-profile');
-const profileFormName = popupFormEdit.querySelector('.popup__input_data_name');
-const profileFormJob = popupFormEdit.querySelector('.popup__input_data_job');
-
-// Форма добавления карточки
-const popupFormAdd = document.querySelector('.popup__form_type_add-card');
-const formAddPlace = popupFormAdd.querySelector('.popup__input_data_place');
-const formAddLink = popupFormAdd.querySelector('.popup__input_data_link');
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+import {
+  initialCards,
+  cardTemplate,
+  cardsList,
+  popupEditProfile,
+  popupAddCard,
+  popupClosedButtons,
+  profileEditButton,
+  profileAddCardButton,
+  profileUserName,
+  profileText,
+  popupFormEdit,
+  profileFormName,
+  profileFormJob,
+  popupFormAdd,
+  formAddPlace,
+  formAddLink,
+  validatorSetting
+} from "./const.js";
 
 
 function renderCard(cards) {
@@ -106,6 +93,13 @@ function submitFormProfile() {
   closePopup(popupFormEdit);
 }
 
+function openAddCardPopup() {
+  const formValidation = new FormValidator(validatorSetting, popupFormAdd);
+  
+  formValidation.enableValidation();
+  openPopup(popupAddCard);
+}
+
 function lockScroll() {
   const scrollBarSize = window.innerWidth - document.documentElement.clientWidth;
 
@@ -128,9 +122,7 @@ profileEditButton.addEventListener('click', openProfilePopup);
 popupFormEdit.addEventListener('submit', submitFormProfile);
 
 // открытие формы добавления карточки
-profileAddCardButton.addEventListener('click', () => {
-  openPopup(popupAddCard);
-});
+profileAddCardButton.addEventListener('click', openAddCardPopup);
 
 //отпраление формы добавления карточки
 popupFormAdd.addEventListener('submit', handleAddCard);

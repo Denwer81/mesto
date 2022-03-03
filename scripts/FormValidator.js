@@ -1,11 +1,3 @@
-const validatorSetting = {
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__saved-btn',
-  inactiveButtonClass: 'popup__saved-btn_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_hidden'
-};
-
 class FormValidator {
   constructor(setting, form) {
     this._setting = setting;
@@ -28,7 +20,7 @@ class FormValidator {
 
     inputs.forEach((input) => {
       const errorMessage = this._form.querySelector(`#${input.id}-error`);
-      
+
       this._hideError(input, errorMessage);
 
       input.addEventListener('input', () => {
@@ -83,4 +75,4 @@ class FormValidator {
   }
 }
 
-export { FormValidator, validatorSetting };
+export { FormValidator };
