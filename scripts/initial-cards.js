@@ -25,3 +25,5 @@ const initialCards = [
   link: './images/Budapest.jpg'
 },
 ];
+
+export { initialCards };
