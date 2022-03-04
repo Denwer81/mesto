@@ -1,10 +1,14 @@
+import {
+  FormValidator
+} from "./FormValidator.js";
+
 // шаблон карточки
 const cardTemplate = '.card-template';
 
 // список карточек
 const cardsList = document.querySelector('.cards__list');
 
-// Popup
+// popup
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddCard = document.querySelector('.popup_type_add-card');
 
@@ -15,49 +19,53 @@ const popupClosedButtons = document.querySelectorAll('.popup__closed-btn');
 const profileEditButton = document.querySelector('.profile__edit-btn');
 const profileAddCardButton = document.querySelector('.profile__add-card-btn');
 
-// Информация о пользователе на странице
+// информация о пользователе на странице
 const profileUserName = document.querySelector('.profile__user-name');
 const profileText = document.querySelector('.profile__text');
 
-// Форма заполнения профиля 
+// форма заполнения профиля 
 const popupFormEdit = document.querySelector('.popup__form_type_edit-profile');
 const profileFormName = popupFormEdit.querySelector('.popup__input_data_name');
 const profileFormJob = popupFormEdit.querySelector('.popup__input_data_job');
 
-// Форма добавления карточки
+// форма добавления карточки
 const popupFormAdd = document.querySelector('.popup__form_type_add-card');
 const formAddPlace = popupFormAdd.querySelector('.popup__input_data_place');
 const formAddLink = popupFormAdd.querySelector('.popup__input_data_link');
 
+// popup открытия картинки
+const popupImage = document.querySelector('.popup_type_image');
+const popupCardImage = popupImage.querySelector('.popup__image');
+const popupImageText = popupImage.querySelector('.popup__image-text');
+
 // данные карточек
-const initialCards = [
+const initialCards = [{
+    name: 'Национальный парк Секвойя',
+    link: './images/sequoia_park.jpg'
+  },
   {
-  name: 'Национальный парк Секвойя',
-  link: './images/sequoia_park.jpg'
-},
-{
-  name: 'Озеро сукко',
-  link: './images/sukko_lake.jpg'
-},
-{
-  name: 'Парк Йосемити',
-  link: './images/yosemite_park.jpg'
-},
-{
-  name: 'Big Sur',
-  link: './images/big_sur.jpg'
-},
-{
-  name: 'Дубай',
-  link: './images/dubai.jpg'
-},
-{
-  name: 'Будапешт',
-  link: './images/Budapest.jpg'
-},
+    name: 'Озеро сукко',
+    link: './images/sukko_lake.jpg'
+  },
+  {
+    name: 'Парк Йосемити',
+    link: './images/yosemite_park.jpg'
+  },
+  {
+    name: 'Big Sur',
+    link: './images/big_sur.jpg'
+  },
+  {
+    name: 'Дубай',
+    link: './images/dubai.jpg'
+  },
+  {
+    name: 'Будапешт',
+    link: './images/Budapest.jpg'
+  },
 ];
 
-// Настройки валидации
+// настройки валидации
 const validatorSetting = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__saved-btn',
@@ -65,6 +73,11 @@ const validatorSetting = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_hidden'
 };
+
+// валидация карточек
+const formProfileValidation = new FormValidator(validatorSetting, popupFormEdit);
+const formAddCardValidation = new FormValidator(validatorSetting, popupFormAdd);
+
 
 export {
   initialCards,
@@ -83,5 +96,10 @@ export {
   popupFormAdd,
   formAddPlace,
   formAddLink,
-  validatorSetting
+  validatorSetting,
+  formProfileValidation,
+  formAddCardValidation,
+  popupImage,
+  popupCardImage,
+  popupImageText
 };

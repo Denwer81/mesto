@@ -1,4 +1,12 @@
-import { openPopup } from './index.js';
+import {
+  popupImage,
+  popupCardImage,
+  popupImageText
+} from './const.js';
+
+import {
+  openPopup,
+} from './index.js';
 
 class Card {
   constructor(data, template) {
@@ -18,47 +26,51 @@ class Card {
 
   _handleBindCard() {
     // лайки карточек
-    this._buttonLike = this._cardElement.querySelector('.card__like-btn');
-    this._buttonLike.addEventListener('click', this._handleCardLike);
+    this._buttonLike = this._cardElement.
+    querySelector('.card__like-btn');
+    this._buttonLike.
+      addEventListener('click', () => {
+        this._handleCardLike();
+      });
 
     // удаление карточки
-    this._cardElement.
-      querySelector('.card__delete-btn').
-      addEventListener('click', this._handleDelete);
+    this._cardElement.querySelector('.card__delete-btn').
+      addEventListener('click', () => {
+        this._handleDelete();
+      });
 
     // popup картинок в карточке
-    this._cardElement.
-      querySelector('.card__image').
-      addEventListener('click', this._handleOpenImageModal);
+    this._cardImage.addEventListener('click', () => {
+      this._handleOpenImageModal();
+    });
   }
 
   _handleCardLike() {
     this._buttonLike.toggle('card__like-btn_active');
   }
 
-  _handleDelete(evt) {
+  _handleDelete() {
     this._cardElement.remove();
     this._cardElement = null;
   }
 
-  _handleOpenImageModal(evt) {
-    const popupImage = document.querySelector('.popup_type_image');
-    const popupCardImage = popupImage.querySelector('.popup__image');
-    const popupImageText = popupImage.querySelector('.popup__image-text');
-
+  _handleOpenImageModal() {
     popupCardImage.src = '';
-    popupCardImage.src = evt.target.src;
-    popupCardImage.alt = evt.target.alt;
-    popupImageText.textContent = evt.target.alt.slice(4);
+    popupCardImage.src = this._cardImage.src;
+    popupCardImage.alt = this._cardImage.alt;
+    popupImageText.textContent = this._name;
 
     openPopup(popupImage);
   }
 
   createCard() {
     this._cardElement = this._getTemplate();
-    this._cardElement.querySelector('.card__title').textContent = this._name;
-    this._cardElement.querySelector('.card__image').src = this._link;
-    this._cardElement.querySelector('.card__image').alt = `Фото ${this._name}`;
+    this._cardImage = this._cardElement.querySelector('.card__image');
+    this._cardText = this._cardElement.querySelector('.card__title');
+
+    this._cardImage.src = this._link;
+    this._cardImage.alt = `Фото ${this._name}`;
+    this._cardText.textContent = this._name;
 
     this._handleBindCard();
 
@@ -66,4 +78,6 @@ class Card {
   }
 }
 
-export { Card };
+export {
+  Card
+};

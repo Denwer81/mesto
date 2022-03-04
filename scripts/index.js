@@ -1,5 +1,7 @@
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
+import {
+  Card
+} from "./Card.js";
+
 import {
   initialCards,
   cardTemplate,
@@ -17,25 +19,27 @@ import {
   popupFormAdd,
   formAddPlace,
   formAddLink,
-  validatorSetting
+  formProfileValidation,
+  formAddCardValidation
 } from "./const.js";
 
 
-function renderCard(cards) {
-  cards.forEach((data) => {
-    const card = new Card(data, cardTemplate);
-    const cardElement = card.createCard();
+function createCard(data) {
+  const cardElement = new Card(data, cardTemplate);
+  const card = cardElement.createCard();
 
-    cardsList.prepend(cardElement);
-  });
+  return card;
 }
 
-renderCard(initialCards);
+function renderCard(data) {
+  const card = createCard(data);
+  cardsList.prepend(card);
+}
 
 function openPopup(elem) {
   elem.classList.add('popup_opened');
   elem.addEventListener('mousedown', closePopupOverlay);
-  window.addEventListener('keydown', closePopupEsc);
+  document.addEventListener('keydown', closePopupEsc);
   lockScroll();
 }
 
@@ -61,19 +65,22 @@ function closePopup(elem) {
   unlockScroll();
 }
 
+(function formValidation() {
+  formProfileValidation.enableValidation();
+  formAddCardValidation.enableValidation();
+})();
+
 function handleAddCard() {
-  renderCard([{
+  renderCard({
     name: formAddPlace.value,
     link: formAddLink.value
-  }]);
+  });
   closePopup(popupFormAdd);
   popupFormAdd.reset();
 }
 
 function openProfilePopup() {
-  const formValidation = new FormValidator(validatorSetting, popupFormEdit);
   
-  formValidation.enableValidation();
   fillFormEditProfile();
   openPopup(popupEditProfile);
 }
@@ -94,9 +101,6 @@ function submitFormProfile() {
 }
 
 function openAddCardPopup() {
-  const formValidation = new FormValidator(validatorSetting, popupFormAdd);
-  
-  formValidation.enableValidation();
   openPopup(popupAddCard);
 }
 
@@ -114,6 +118,8 @@ function unlockScroll() {
   }, 300);
 }
 
+// инициализация карточек
+initialCards.forEach(data => renderCard(data));
 
 //открытие профайла
 profileEditButton.addEventListener('click', openProfilePopup);
@@ -133,4 +139,6 @@ popupClosedButtons.forEach((elem) => {
 });
 
 
-export { openPopup };
+export {
+  openPopup
+};
