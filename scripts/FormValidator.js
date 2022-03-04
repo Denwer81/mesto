@@ -8,7 +8,7 @@ class FormValidator {
 
   enableValidation() {
     this._setEventListener();
-    this._toggleButtonState();
+    this.toggleButtonState();
   }
 
   _setEventListener() {
@@ -19,12 +19,8 @@ class FormValidator {
     });
 
     inputs.forEach((input) => {
-      const errorMessage = this._form.querySelector(`#${input.id}-error`);
-
-      this._hideError(input, errorMessage);
-
       input.addEventListener('input', () => {
-        this._validationInput(input, errorMessage);
+        this._validationInput(input);
       });
     });
   }
@@ -34,29 +30,31 @@ class FormValidator {
     this._disableButton();
   }
 
-  _validationInput(input, errorMessage) {
+  _validationInput(input) {
+    this._errorMessage = this._form.querySelector(`#${input.id}-error`);
+    
     if (!input.validity.valid) {
-      this._showError(input, errorMessage);
+      this._showError(input);
     } else {
-      this._hideError(input, errorMessage);
+      this._hideError(input);
     }
 
-    this._toggleButtonState();
+    this.toggleButtonState();
   }
 
-  _showError(input, errorMessage) {
+  _showError(input) {
     input.classList.add(this._setting.inputErrorClass);
-    errorMessage.textContent = input.validationMessage;
-    errorMessage.classList.remove(this._setting.errorClass);
+    this._errorMessage.textContent = input.validationMessage;
+    this._errorMessage.classList.remove(this._setting.errorClass);
   }
 
-  _hideError(input, errorMessage) {
+  _hideError(input) {
     input.classList.remove(this._setting.inputErrorClass);
-    errorMessage.textContent = '';
-    errorMessage.classList.add(this._setting.errorClass);
+    this._errorMessage.textContent = '';
+    this._errorMessage.classList.add(this._setting.errorClass);
   }
 
-  _toggleButtonState() {
+  toggleButtonState() {
     if (!this._form.checkValidity()) {
       this._disableButton();
     } else {

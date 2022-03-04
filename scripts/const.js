@@ -97,9 +97,9 @@ export {
   formAddPlace,
   formAddLink,
   validatorSetting,
-  formProfileValidation,
-  formAddCardValidation,
   popupImage,
   popupCardImage,
-  popupImageText
+  popupImageText,
+  formProfileValidation,
+  formAddCardValidation
 };

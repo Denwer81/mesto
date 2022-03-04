@@ -33,6 +33,7 @@ function createCard(data) {
 
 function renderCard(data) {
   const card = createCard(data);
+  
   cardsList.prepend(card);
 }
 
@@ -65,11 +66,6 @@ function closePopup(elem) {
   unlockScroll();
 }
 
-(function formValidation() {
-  formProfileValidation.enableValidation();
-  formAddCardValidation.enableValidation();
-})();
-
 function handleAddCard() {
   renderCard({
     name: formAddPlace.value,
@@ -80,7 +76,7 @@ function handleAddCard() {
 }
 
 function openProfilePopup() {
-  
+  formProfileValidation.toggleButtonState();
   fillFormEditProfile();
   openPopup(popupEditProfile);
 }
@@ -101,6 +97,7 @@ function submitFormProfile() {
 }
 
 function openAddCardPopup() {
+  formAddCardValidation.toggleButtonState();
   openPopup(popupAddCard);
 }
 
@@ -137,6 +134,10 @@ popupFormAdd.addEventListener('submit', handleAddCard);
 popupClosedButtons.forEach((elem) => {
   elem.addEventListener('click', () => closePopup(elem));
 });
+
+// валидация карточек
+formProfileValidation.enableValidation();
+formAddCardValidation.enableValidation();
 
 
 export {
