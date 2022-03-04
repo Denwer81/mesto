@@ -26,18 +26,16 @@ class Card {
 
   _handleBindCard() {
     // лайки карточек
-    this._buttonLike = this._cardElement.
-    querySelector('.card__like-btn');
-    this._buttonLike.
-      addEventListener('click', () => {
-        this._handleCardLike();
-      });
+    this._buttonLike = this._cardElement.querySelector('.card__like-btn');
+    this._buttonLike.addEventListener('click', () => {
+      this._handleCardLike();
+    });
 
     // удаление карточки
     this._cardElement.querySelector('.card__delete-btn').
-      addEventListener('click', () => {
-        this._handleDelete();
-      });
+    addEventListener('click', () => {
+      this._handleDelete();
+    });
 
     // popup картинок в карточке
     this._cardImage.addEventListener('click', () => {
@@ -46,10 +44,11 @@ class Card {
   }
 
   _handleCardLike() {
-    this._buttonLike.toggle('card__like-btn_active');
+    this._buttonLike.classList.toggle('card__like-btn_active');
   }
 
   _handleDelete() {
+    console.log(this._cardElement);
     this._cardElement.remove();
     this._cardElement = null;
   }
