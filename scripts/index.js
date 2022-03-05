@@ -62,7 +62,7 @@ function closePopup(elem) {
 
   currentPopup.removeEventListener('mousedown', closePopupOverlay);
   currentPopup.classList.remove('popup_opened');
-  window.removeEventListener('keydown', closePopupEsc);
+  document.removeEventListener('keydown', closePopupEsc);
   unlockScroll();
 }
 
@@ -76,8 +76,8 @@ function handleAddCard() {
 }
 
 function openProfilePopup() {
-  formProfileValidation.toggleButtonState();
   fillFormEditProfile();
+  formProfileValidation.toggleButtonState();
   openPopup(popupEditProfile);
 }
 
