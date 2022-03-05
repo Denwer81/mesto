@@ -55,8 +55,8 @@ class Card {
 
   _handleOpenImageModal() {
     popupCardImage.src = '';
-    popupCardImage.src = this._cardImage.src;
-    popupCardImage.alt = this._cardImage.alt;
+    popupCardImage.src = this._link;
+    popupCardImage.alt = `Фото ${this._name}`;
     popupImageText.textContent = this._name;
 
     openPopup(popupImage);
