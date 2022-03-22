@@ -1,47 +1,32 @@
 import {
-  popupImage,
-  popupCardImage,
-  popupImageText
-} from './const.js';
-
-import {
-  openPopup,
+  openImagePopup
 } from './index.js';
 
-class Card {
-  constructor(data, template) {
-    this._name = data.name;
-    this._link = data.link;
-    this._template = template;
-  }
 
-  _getTemplate() {
-    const cardElement = document
-      .querySelector(this._template)
+export class Card {
+  constructor({ name, link }, templateSelector) {
+    this._name = name;
+    this._link = link;
+    this._openImagePopup = openImagePopup;
+
+    this._cardElement = document
+      .querySelector(templateSelector)
       .content
       .querySelector('.card')
       .cloneNode(true);
-
-    return cardElement;
   }
 
   _handleBindCard() {
     // лайки карточек
     this._likeButton = this._cardElement.querySelector('.card__like-btn');
-    this._likeButton.addEventListener('click', () => {
-      this._handleCardLike();
-    });
+    this._likeButton.addEventListener('click', this._handleCardLike.bind(this));
 
     // удаление карточки
     this._deleteButton = this._cardElement.querySelector('.card__delete-btn');
-    this._deleteButton.addEventListener('click', (evt) => {
-      this._handleDelete(evt);
-    });
+    this._deleteButton.addEventListener('click', this._handleDelete.bind(this));
 
     // popup картинок в карточке
-    this._cardImage.addEventListener('click', () => {
-      this._handleOpenImageModal();
-    });
+    this._cardImage.addEventListener('click', this._handleOpenImagePopup.bind(this));
   }
 
   _handleCardLike() {
@@ -53,17 +38,11 @@ class Card {
     this._cardElement = null;
   }
 
-  _handleOpenImageModal() {
-    popupCardImage.src = '';
-    popupCardImage.src = this._link;
-    popupCardImage.alt = `Фото ${this._name}`;
-    popupImageText.textContent = this._name;
-
-    openPopup(popupImage);
+  _handleOpenImagePopup() {
+    openImagePopup(this._link, this._name);
   }
 
   createCard() {
-    this._cardElement = this._getTemplate();
     this._cardImage = this._cardElement.querySelector('.card__image');
     this._cardText = this._cardElement.querySelector('.card__title');
 
@@ -76,7 +55,3 @@ class Card {
     return this._cardElement;
   }
 }
-
-export {
-  Card
-};
