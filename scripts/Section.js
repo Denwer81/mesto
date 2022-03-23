@@ -7,13 +7,11 @@ export class Section {
   
   renderItems() {
     this._items.forEach(dataCard => {
-      const cardElement = this._renderer(dataCard);
-
-      this.addItems(cardElement);
+      this._renderer(dataCard);
     });
   }
 
-  addItems(card) {
+  addItem(card) {
     this._container.prepend(card);
   }
 }

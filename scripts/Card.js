@@ -1,13 +1,8 @@
-import {
-  openImagePopup
-} from './index.js';
-
-
 export class Card {
-  constructor({ name, link }, templateSelector) {
+  constructor({ name, link }, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
-    this._openImagePopup = openImagePopup;
+    this._handleCardClick = handleCardClick;
 
     this._cardElement = document
       .querySelector(templateSelector)
@@ -39,7 +34,7 @@ export class Card {
   }
 
   _handleOpenImagePopup() {
-    openImagePopup(this._link, this._name);
+    this._handleCardClick(this._link, this._name);
   }
 
   createCard() {

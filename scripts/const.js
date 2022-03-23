@@ -17,19 +17,15 @@ export const userDataSelector = {
 // форма заполнения профиля
 export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 export const popupFormEdit = popupEditProfile.querySelector('.popup__form_type_edit-profile');
-// export const profileFormName = popupFormEdit.querySelector('.popup__input_data_name');
-// export const profileFormJob = popupFormEdit.querySelector('.popup__input_data_job');
+export const profileFormName = popupFormEdit.querySelector('.popup__input_data_name');
+export const profileFormJob = popupFormEdit.querySelector('.popup__input_data_job');
 
 // форма добавления карточки
 export const popupAddCard = document.querySelector('.popup_type_add-card');
 export const popupFormAdd = popupAddCard.querySelector('.popup__form_type_add-card');
-// export const formAddPlace = popupFormAdd.querySelector('.popup__input_data_place');
-// export const formAddLink = popupFormAdd.querySelector('.popup__input_data_link');
 
 // popup открытия картинки
 export const popupImage = document.querySelector('.popup_type_image');
-export const popupCardImage = popupImage.querySelector('.popup__image');
-export const popupImageText = popupImage.querySelector('.popup__image-text');
 
 // данные карточек
 export const initialCards = [{

@@ -5,13 +5,14 @@ export class UserInfo {
   }
 
   getUserInfo() {
-    return [
-      this._userName.textContent,
-      this._userAbout.textContent
-    ];
+    return {
+      userName: this._userName.textContent,
+      userAbout: this._userAbout.textContent
+    };
+      
   }
 
-  setUserInfo([userName, userAbout]) {
+  setUserInfo({ userName, userAbout }) {
     this._userName.textContent = userName;
     this._userAbout.textContent = userAbout;
   }
