@@ -27,17 +27,11 @@ export class FormValidator {
   }
 
   _setEventListener() {
-    this._form.addEventListener('submit', this._submitForm.bind(this));
-
     this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
         this._validationInput(input);
       });
     });
-  }
-
-  _submitForm(evt) {
-    evt.preventDefault();
   }
 
   _validationInput(input) {
