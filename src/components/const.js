@@ -1,3 +1,11 @@
+import sequoia from '../images/sequoia_park.jpg';
+import sukko from '../images/sukko_lake.jpg';
+import yosemite from '../images/yosemite_park.jpg';
+import bigSur from '../images/big_sur.jpg';
+import dubai from '../images/dubai.jpg';
+import budapest from '../images/Budapest.jpg';
+
+
 // шаблон карточки
 export const cardTemplate = '.card-template';
 
@@ -30,27 +38,27 @@ export const popupImage = document.querySelector('.popup_type_image');
 // данные карточек
 export const initialCards = [{
     name: 'Национальный парк Секвойя',
-    link: './images/sequoia_park.jpg'
+    link: sequoia
   },
   {
     name: 'Озеро сукко',
-    link: './images/sukko_lake.jpg'
+    link: sukko
   },
   {
     name: 'Парк Йосемити',
-    link: './images/yosemite_park.jpg'
+    link: yosemite
   },
   {
     name: 'Big Sur',
-    link: './images/big_sur.jpg'
+    link: bigSur
   },
   {
     name: 'Дубай',
-    link: './images/dubai.jpg'
+    link: dubai
   },
   {
     name: 'Будапешт',
-    link: './images/Budapest.jpg'
+    link: budapest
   },
 ];
 

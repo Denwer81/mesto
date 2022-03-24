@@ -9,7 +9,6 @@
   <meta name="author" content="Филатов Денис">
   <meta name="author" content="Filatov Denis">
   <title>Mesto Russia</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="page">
@@ -17,14 +16,14 @@
 
     <header class="header">
       <div class="header__container">
-        <img class="header__logo" src="./images/logo_main.svg" alt="Логотип">
+        <img class="header__logo" src="<%=require('./images/logo_main.svg')%>" alt="Логотип">
       </div>
     </header>
 
     <main class="main">
 
       <section class="profile container main__profile">
-        <img class="profile__image" src="./images/profile_image.jpg" alt="аватар">
+        <img class="profile__image" src="<%=require('./images/profile_image.jpg')%>" alt="аватар">
         <div class="profile__info">
           <h1 class="profile__user-name">Жак-Ив Кусто</h1>
           <button class="profile__edit-btn" type="button" aria-label="редактировать профиль"></button>
@@ -96,7 +95,6 @@
       </div>
     </li>
   </template>
-  <script type="module" src="./scripts/index.js"></script>
 </body>
 
 </html>

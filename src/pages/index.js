@@ -1,3 +1,5 @@
+import './index.css';
+
 import {
   initialCards,
   cardTemplate,
@@ -13,31 +15,31 @@ import {
   userDataSelector,
   profileFormName,
   profileFormJob
-} from "./const.js";
+} from "../components/const.js";
 
 import {
   Section
-} from "./Section.js";
+} from "../components/Section.js";
 
 import {
   Card
-} from "./Card.js";
+} from "../components/Card.js";
 
 import {
   PopupWithForm
-} from "./PopupWithForm.js";
+} from "../components/PopupWithForm.js";
 
 import {
   PopupWithImage
-} from "./PopupWithImage.js";
+} from "../components/PopupWithImage.js";
 
 import {
   UserInfo
-} from "./UserInfo.js";
+} from "../components/UserInfo.js";
 
 import {
   FormValidator
-} from './FormValidator.js';
+} from '../components/FormValidator.js';
 
 
 // инициализация карточек
