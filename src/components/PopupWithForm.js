@@ -28,7 +28,11 @@ export class PopupWithForm extends Popup {
     return values;
   }
 
-   _handleSubmitForm(evt) {
+  setNewSubmitHandler(newSubmitHandler) {
+    this._submitForm = newSubmitHandler;
+  }
+
+  _handleSubmitForm(evt) {
     const data = this._getInputValues();
 
     evt.preventDefault();

@@ -1,11 +1,3 @@
-import sequoia from '../images/sequoia_park.jpg';
-import sukko from '../images/sukko_lake.jpg';
-import yosemite from '../images/yosemite_park.jpg';
-import bigSur from '../images/big_sur.jpg';
-import dubai from '../images/dubai.jpg';
-import budapest from '../images/Budapest.jpg';
-
-
 // шаблон карточки
 export const cardTemplate = '.card-template';
 
@@ -15,11 +7,14 @@ export const cardsList = document.querySelector('.cards__list');
 // кнопки открытия
 export const profileEditButton = document.querySelector('.profile__edit-btn');
 export const profileAddCardButton = document.querySelector('.profile__add-card-btn');
+export const profileAvatar = document.querySelector('.profile__image');
+
 
 // селекторы информации о пользователе на странице
 export const userDataSelector = {
   userNameSelector: '.profile__user-name',
-  userAboutSelector: '.profile__text'
+  userAboutSelector: '.profile__text',
+  userAvatarSelector: '.profile__image'
 };
 
 // форма заполнения профиля
@@ -35,32 +30,12 @@ export const popupFormAdd = popupAddCard.querySelector('.popup__form_type_add-ca
 // popup открытия картинки
 export const popupImage = document.querySelector('.popup_type_image');
 
-// данные карточек
-export const initialCards = [{
-    name: 'Национальный парк Секвойя',
-    link: sequoia
-  },
-  {
-    name: 'Озеро сукко',
-    link: sukko
-  },
-  {
-    name: 'Парк Йосемити',
-    link: yosemite
-  },
-  {
-    name: 'Big Sur',
-    link: bigSur
-  },
-  {
-    name: 'Дубай',
-    link: dubai
-  },
-  {
-    name: 'Будапешт',
-    link: budapest
-  },
-];
+// popup удаления карточки
+export const popupDelete = document.querySelector('.popup_type_delete-card');
+
+// popup измененя аватара
+export const popupChangeAvatar = document.querySelector('.popup_type_change-avatar');
+export const popupFormChangeAvatar = popupChangeAvatar.querySelector('.popup__form_type_change-avatar');
 
 // настройки валидации
 export const validatorSetting = {
@@ -69,4 +44,10 @@ export const validatorSetting = {
   inactiveButtonClass: 'popup__saved-btn_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_hidden'
+};
+
+// настройки api
+export const apiSettings = {
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',
+  authorization: '78448b42-5868-45d9-8c17-5b242dddd810',
 };
