@@ -13,11 +13,8 @@ export class UserInfo {
   }
 
   setUserInfo({ userName, userAbout }) {
-    // console.log(avatarLink);
-    // console.log(this._userImage);
     this._userName.textContent = userName;
     this._userAbout.textContent = userAbout;
-    // this._userImage.style.backgroundImage = `url('${avatarLink}')`;
   }
 
   setUserAvatar(avatarLink) {

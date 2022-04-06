@@ -120,16 +120,21 @@ function openProfilePopup() {
 }
 
 // отпраление формы профайла
-function submitProfileForm(userData) {
+function submitProfileForm(userData, submitButton) {
+  submitButton.textContent = 'Сохранение...';
+
   api.editProfile(userData.name, userData.job)
     .then(res => {
       userInfo.setUserInfo({
         userName: res.name,
         userAbout: res.about,
       });
-    });
+    })
+    .then(() => {
+      submitButton.textContent = 'Сохранить';
 
-  popupProfile.closePopup();
+      popupProfile.closePopup();
+    });
 }
 
 // открытие смены аватара
@@ -141,14 +146,19 @@ function openChangeAvatarPopup() {
   popupAvatar.openPopup();
 }
 
-// отправка смены формы аватара
-function submitAvatarForm(link) {
+// отправление формы смена аватара
+function submitAvatarForm(link, submitButton) {
+  submitButton.textContent = 'Сохранение...';
+
   api.changeAvatar(link['avatar-image-url'])
     .then(res => {
       userInfo.setUserAvatar(res.avatar);
-    });
+    })
+    .then(() => {
+      submitButton.textContent = 'Сохранить';
 
-    popupAvatar.closePopup();
+      popupAvatar.closePopup();
+    });
 }
 
 // открытие попапа добавления карточки
@@ -160,13 +170,18 @@ function openAddCardPopup() {
 }
 
 //отпраление формы добавления карточки
-function handleSubmitForm(cardData) {
+function handleSubmitForm(cardData, submitButton) {
+  submitButton.textContent = 'Сохранение...';
+
   api.addNewCard(cardData['data-image'], cardData['data-image-url'])
     .then(card => {
       renderCard(card);
-    });
+    })
+    .then(() => {
+      submitButton.textContent = 'Создание';
 
-  popupCard.closePopup();
+      popupCard.closePopup();
+    });
 }
 
 // открытие попапа картинки
@@ -177,23 +192,27 @@ function openImagePopup(link, name) {
 // открытие попапа удаления карточки
 function openDeleteCard(card, cardId) {
   popupDeleteCard.openPopup();
-  popupDeleteCard.setNewSubmitHandler(() => {
-    handleSubmitDelete(card, cardId);
+  popupDeleteCard.setNewSubmitHandler((data, submitButton) => {
+    handleSubmitDelete(card, cardId, submitButton);
   });
 }
 
 // удаление карточки
-function handleSubmitDelete(card, cardId) {
+function handleSubmitDelete(card, cardId, submitButton) {
+  submitButton.textContent = 'Удаление...';
+
   api.deleteCard(cardId)
     .then((cardDelete) => {
       if (cardDelete) {
         card.remove();
         card = null;
 
+
         popupDeleteCard.closePopup();
       }
       popupDeleteCard.closePopup();
-    });
+    })
+    .finally(() => submitButton.textContent = 'Да');
 }
 
 // лайк карточки

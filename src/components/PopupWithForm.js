@@ -10,6 +10,7 @@ export class PopupWithForm extends Popup {
     this._handleSubmitForm = this._handleSubmitForm.bind(this);
     this._form = this._popup.querySelector('.popup__form');
     this._inputs = this._form.querySelectorAll('.popup__input');
+    this._submitButton = this._form.querySelector('.popup__saved-btn');
   }
 
   closePopup() {
@@ -36,7 +37,7 @@ export class PopupWithForm extends Popup {
     const data = this._getInputValues();
 
     evt.preventDefault();
-    this._submitForm(data);
+    this._submitForm(data, this._submitButton);
   }
 
   _setEventListeners() {
