@@ -41,11 +41,12 @@ export class Card {
   _handleCardLike() {
     this._cardLike(this._id, this._isLiked())
       .then(card => {
-        this._cardLikesCounter.textContent = card.likes.length;
         this._likes = card.likes;
+        this._cardLikesCounter.textContent = this._likes.length;
 
         this._setHeartLike();
-      });
+      })
+      .catch(err => console.log(err));
   }
 
   _isLiked() {
