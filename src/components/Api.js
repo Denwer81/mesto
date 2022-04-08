@@ -1,24 +1,25 @@
 export class Api {
-  constructor({
-    baseUrl,
-    headers
-  }) {
+  constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this.headers = headers;
+  }
+
+  _checkResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
         headers: this.headers
       })
-      .then(res => this._checkResponse(res));
+      .then(this._checkResponse);
   }
 
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
         headers: this.headers
       })
-      .then(res => this._checkResponse(res));
+      .then(this._checkResponse);
   }
 
   editProfile(name, about) {
@@ -30,7 +31,7 @@ export class Api {
           about: about
         })
       })
-      .then(res => this._checkResponse(res));
+      .then(this._checkResponse);
   }
 
   changeAvatar(link) {
@@ -41,7 +42,7 @@ export class Api {
           avatar: link
         })
       })
-      .then(res => this._checkResponse(res));
+      .then(this._checkResponse);
   }
 
   addNewCard(name, link) {
@@ -53,7 +54,7 @@ export class Api {
           link: link
         })
       })
-      .then(res => this._checkResponse(res));
+      .then(this._checkResponse);
   }
 
   deleteCard(cardId) {
@@ -61,26 +62,16 @@ export class Api {
         method: 'DELETE',
         headers: this.headers
       })
-      .then(res => this._checkResponse(res));
+      .then(this._checkResponse);
   }
 
   likesCard(cardId, isLiked) {
-    if (isLiked) {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-          method: 'DELETE',
-          headers: this.headers
-        })
-        .then(res => this._checkResponse(res));
-    } else {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-          method: 'PUT',
-          headers: this.headers
-        })
-        .then(res => this._checkResponse(res));
-    }
-  }
-
-  _checkResponse(res) {
-    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+    let method = isLiked ? 'DELETE' : 'PUT';
+    
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+        method: method,
+        headers: this.headers
+      })
+      .then(this._checkResponse);
   }
 }

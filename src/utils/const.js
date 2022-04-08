@@ -1,5 +1,5 @@
 // шаблон карточки
-export const cardTemplate = '.card-template';
+export const cardTemplateSelector = '.card-template';
 
 // список карточек(контейнер)
 export const cardsList = document.querySelector('.cards__list');
@@ -11,10 +11,10 @@ export const profileAvatarButton = document.querySelector('.profile__image');
 
 // popup
 export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-export const popupAddCard = document.querySelector('.popup_type_add-card');
-export const popupImage = document.querySelector('.popup_type_image');
-export const popupDelete = document.querySelector('.popup_type_delete-card');
 export const popupChangeAvatar = document.querySelector('.popup_type_change-avatar');
+export const popupAddCard = document.querySelector('.popup_type_add-card');
+export const popupDeleteCard = document.querySelector('.popup_type_delete-card');
+export const popupOpenImage = document.querySelector('.popup_type_image');
 
 // селекторы информации о пользователе на странице
 export const userDataSelector = {

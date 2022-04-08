@@ -1,6 +1,5 @@
-import {
-  Popup
-} from './Popup.js';
+import { Popup } from './Popup.js';
+
 
 export class PopupWithForm extends Popup {
   constructor(currentPopup, submitForm) {
@@ -21,13 +20,12 @@ export class PopupWithForm extends Popup {
     }, 300);
   }
 
-  _getInputValues() {
-    const values = {};
+  renderLoading(buttonText = this._defaultButtonText) {
+    this._submitButton.textContent = buttonText;
+  }
 
-    this._inputList.forEach((input) => {
-      values[input.name] = input.value;
-    });
-    return values;
+  setNewSubmitHandler(newSubmitHandler) {
+    this._submitForm = newSubmitHandler;
   }
 
   setInputValues(data) {
@@ -36,12 +34,13 @@ export class PopupWithForm extends Popup {
     });
   }
 
-  renderLoading(buttonText = this._defaultButtonText) {
-    this._submitButton.textContent = buttonText;
-  }
+  _getInputValues() {
+    const values = {};
 
-  setNewSubmitHandler(newSubmitHandler) {
-    this._submitForm = newSubmitHandler;
+    this._inputList.forEach((input) => {
+      values[input.name] = input.value;
+    });
+    return values;
   }
 
   _handleSubmitForm(evt) {

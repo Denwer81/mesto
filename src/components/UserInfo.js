@@ -12,12 +12,20 @@ export class UserInfo {
     };
   }
 
-  setUserInfo({ userName, userAbout }) {
-    this._userName.textContent = userName;
-    this._userAbout.textContent = userAbout;
+  getUserId() {
+    return this._userId;
   }
 
-  setUserAvatar(avatarLink) {
-    this._userImage.style.backgroundImage = `url('${avatarLink}')`;
+  setUserInfo({ userId, userName, userAbout, userAvatar }) {
+    this._userId = userId;
+    if (userName) {
+      this._userName.textContent = userName;
+    }
+    if (userAbout) {
+      this._userAbout.textContent = userAbout;
+    }
+    if (userAvatar) {
+      this._userImage.style.backgroundImage = `url('${userAvatar}')`;
+    }
   }
 }
