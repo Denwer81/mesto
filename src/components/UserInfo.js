@@ -17,7 +17,9 @@ export class UserInfo {
   }
 
   setUserInfo({ userId, userName, userAbout, userAvatar }) {
-    this._userId = userId;
+    if (userId) {
+      this._userId = userId;
+    }
     if (userName) {
       this._userName.textContent = userName;
     }

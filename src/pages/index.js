@@ -185,11 +185,11 @@ function handleSubmitDeleteForm(card) {
 }
 
 // лайк карточки
-function handleCardLike(id, isLiked) {
-  api.likesCard(id, isLiked)
-  .then(card => {
-    this.setLikesCount(card);
-    this.setHeartLike();
+function handleCardLike(card) {
+  api.likesCard(card.id, card.isLiked())
+    .then(cardData => {
+    card.setLikesCount(cardData);
+    card.setHeartLike();
   })
   .catch(err => console.log(err));
 }
