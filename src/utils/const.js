@@ -7,8 +7,14 @@ export const cardsList = document.querySelector('.cards__list');
 // кнопки открытия
 export const profileEditButton = document.querySelector('.profile__edit-btn');
 export const profileAddCardButton = document.querySelector('.profile__add-card-btn');
-export const profileAvatar = document.querySelector('.profile__image');
+export const profileAvatarButton = document.querySelector('.profile__image');
 
+// popup
+export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+export const popupAddCard = document.querySelector('.popup_type_add-card');
+export const popupImage = document.querySelector('.popup_type_image');
+export const popupDelete = document.querySelector('.popup_type_delete-card');
+export const popupChangeAvatar = document.querySelector('.popup_type_change-avatar');
 
 // селекторы информации о пользователе на странице
 export const userDataSelector = {
@@ -17,26 +23,9 @@ export const userDataSelector = {
   userAvatarSelector: '.profile__image'
 };
 
-// форма заполнения профиля
-export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-export const popupFormEdit = popupEditProfile.querySelector('.popup__form_type_edit-profile');
-
-// форма добавления карточки
-export const popupAddCard = document.querySelector('.popup_type_add-card');
-export const popupFormAdd = popupAddCard.querySelector('.popup__form_type_add-card');
-
-// popup открытия картинки
-export const popupImage = document.querySelector('.popup_type_image');
-
-// popup удаления карточки
-export const popupDelete = document.querySelector('.popup_type_delete-card');
-
-// popup измененя аватара
-export const popupChangeAvatar = document.querySelector('.popup_type_change-avatar');
-export const popupFormChangeAvatar = popupChangeAvatar.querySelector('.popup__form_type_change-avatar');
-
 // настройки валидации
 export const validatorSetting = {
+  formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__saved-btn',
   inactiveButtonClass: 'popup__saved-btn_disabled',

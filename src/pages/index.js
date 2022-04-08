@@ -2,21 +2,18 @@ import './index.css';
 
 import {
   cardTemplate,
+  cardsList,
   profileEditButton,
   profileAddCardButton,
-  cardsList,
-  validatorSetting,
-  popupFormEdit,
-  popupFormAdd,
+  profileAvatarButton,
   popupImage,
   popupEditProfile,
   popupAddCard,
-  userDataSelector,
-  apiSettings,
   popupDelete,
   popupChangeAvatar,
-  popupFormChangeAvatar,
-  profileAvatar
+  userDataSelector,
+  validatorSetting,
+  apiSettings,
 } from "../utils/const.js";
 
 import {
@@ -55,7 +52,7 @@ const api = new Api(apiSettings);
 const userInfo = new UserInfo(userDataSelector);
 
 // экземпляр section
-const section = new Section({ items: [], renderer: renderCard }, cardsList);
+const section = new Section(renderCard, cardsList);
 
 // popup экземпляры
 const popupWithImage = new PopupWithImage(popupImage);
@@ -65,13 +62,21 @@ const popupCard = new PopupWithForm(popupAddCard, handleSubmitForm);
 const popupDeleteCard = new PopupWithForm(popupDelete);
 
 // валидация карточек
-const formProfileValidation = new FormValidator(validatorSetting, popupFormEdit);
-const formAddCardValidation = new FormValidator(validatorSetting, popupFormAdd);
-const formChangeAvatarValidation = new FormValidator(validatorSetting, popupFormChangeAvatar);
+const formValidators = {};
 
-formProfileValidation.enableValidation();
-formAddCardValidation.enableValidation();
-formChangeAvatarValidation.enableValidation();
+const enableValidation = (validatorSetting) => {
+  const formList = Array.from(document.querySelectorAll(validatorSetting.formSelector));
+
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(validatorSetting, formElement);
+    const formName = formElement.getAttribute('name');
+
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(validatorSetting);
 
 // инициализация профиля и карточек
 let userId = '';
@@ -84,21 +89,18 @@ Promise.all([api.getProfile(), api.getInitialCards()])
       userName: usedData.name,
       userAbout: usedData.about,
     });
-
-    cards.reverse().forEach(card => {
-      renderCard(card);
-    });
+    section.renderItems(cards.reverse());
   })
   .catch(err => console.log(err));
 
 // создание и рендер карточки
-function createCard(dataCard) {
+function createCardHandler(dataCard) {
   const cardElement = new Card(dataCard, cardTemplate, openImagePopup, openDeleteCard, cardLike, userId);
-  return cardElement;
+  return cardElement.createCard();
 }
 
 function renderCard(dataCard) {
-  const card = createCard(dataCard).createCard();
+  const card = createCardHandler(dataCard);
   section.addItem(card);
 }
 
@@ -109,7 +111,7 @@ function openProfilePopup() {
   const profileData = userInfo.getUserInfo();
 
   popupProfile.setInputValues(profileData);
-  formProfileValidation.resetValidation();
+  formValidators['edit-profile-form'].resetValidation();
   popupProfile.openPopup();
 }
 
@@ -129,10 +131,10 @@ function submitProfileForm(userData) {
 }
 
 // открытие смены аватара
-profileAvatar.addEventListener('click', openChangeAvatarPopup);
+profileAvatarButton.addEventListener('click', openChangeAvatarPopup);
 
 function openChangeAvatarPopup() {
-  formChangeAvatarValidation.resetValidation();
+  formValidators['change-avatar-form'].resetValidation();
   popupAvatar.openPopup();
 }
 
@@ -152,7 +154,7 @@ function submitAvatarForm(link) {
 profileAddCardButton.addEventListener('click', openAddCardPopup);
 
 function openAddCardPopup() {
-  formAddCardValidation.resetValidation();
+  formValidators['add-card-form'].resetValidation();
   popupCard.openPopup();
 }
 
